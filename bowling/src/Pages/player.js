@@ -1,14 +1,19 @@
 import React from "react";
 
 class Player extends React.Component {
-    constructor() {
+    constructor(player) {
+        this.name = player
+    }
         
+    
+        render() {
+            renturn(
+                <button className="player">
+                    {this.props.Player}
+                </button>
+            )
     }
-    render() {
-        renturn(
-            <div></div>
-        )
+    
     }
-}
 
 export default Player
