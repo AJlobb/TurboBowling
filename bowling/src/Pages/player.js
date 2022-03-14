@@ -4,16 +4,16 @@ class Player extends React.Component {
     constructor(player) {
         this.name = player
     }
-        
-    
-        render() {
-            renturn(
+    render() {
+        return(
+            <div>
+                <input id="PlayerInput" type='textbox'/>
+                <label htmlFor="PlayerInput"></label>
                 <button className="player">
                     {this.props.Player}
                 </button>
-            )
-    }
-    
+            </div>
+        )
     }
 
 export default Player
