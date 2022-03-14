@@ -3,11 +3,11 @@ import Player from "../player.js";
 
 describe('Get player name', () => {
     it('A player can retieve their name', () => {
-        const player = new Player();
+        const player = new Player("alex");
          expect(player.getName()).toEqual("alex");
     });
     it('A player can be added to the game', () => {
-        const player = new Player();
+        const player = new Player(["alex","Tom"]);
         expect(player.players.length).toEqual(2)
     });
  });

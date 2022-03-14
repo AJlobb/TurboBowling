@@ -1,10 +1,17 @@
 import React from "react";
 
 class Player extends React.Component {
-    constructor(player) {
+    constructor(players) {
         super()
         this.name = "alex"
+        this.players = []
+        for (let i = 0; i < players.length; i++){
+            const playerName = players[i]
+            this.players.push(playerName)
+        }
+
     }
+    
     getName = () => {
         return this.name
     }
@@ -20,4 +27,6 @@ class Player extends React.Component {
         )
     }
 }
+
+
 export default Player
