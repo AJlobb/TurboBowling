@@ -1,6 +1,9 @@
 import React from "react";
-
+/**
+ * Class for the Players
+ */
 class Player extends React.Component {
+
     constructor(players) {
         super()
         this.name = "alex"
@@ -15,7 +18,10 @@ class Player extends React.Component {
     handleInput = (e) => {
         this.players(this.players.push(e.target.value))
     }
-
+    /**
+     * Function to get the name of the person
+     * @returns the name
+     */
     getName = () => {
         return this.name
     }
@@ -26,21 +32,23 @@ class Player extends React.Component {
         return (
             <div>
                 <form onSubmit={this.handleInput}> (
-                <input id="PlayerInput" type='textbox'/>
-                <label htmlFor="PlayerInput"></label>
-                <button className="player">
-                    {this.props.Player}
-                </button>
+                    <input id="PlayerInput" type='textbox' />
+                    <label htmlFor="PlayerInput"></label>
+                    <button className="player">
+                        {this.props.Player}
+                    </button>
                 </form>
             </div>
         )
     }
 }
-
-class Board extends React.Component {
+/**
+ * Class to create the board
+ */
+class Board extends React.Component 
     createBoard = () => {
-        
+
     }
-    
-    }
+
+}
 export default Player
