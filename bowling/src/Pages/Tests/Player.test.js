@@ -1,12 +1,16 @@
 import { render, screen } from "@testing-library/react";
 import Player from "../player.js";
 
-// describe('Get player name', () => {
-//     it('A player can retieve their name', () => {
-//         const player = new Player();
-//         expect(player.getName()).toEqual("alex");
-//     });
-// });
+describe('Get player name', () => {
+    it('A player can retieve their name', () => {
+        const player = new Player();
+         expect(player.getName()).toEqual("alex");
+    });
+    it('A player can be added to the game', () => {
+        const player = new Player();
+        expect(player.players.length).toEqual(2)
+    });
+ });
 
 describe("Checking input value and testing component", () => {
   test("Input is valid within file", () => {

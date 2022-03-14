@@ -2,12 +2,16 @@ import React from "react";
 
 class Player extends React.Component {
     constructor(player) {
-        this.name = player
+        super()
+        this.name = "alex"
+    }
+    getName = () => {
+        return this.name
     }
     render() {
-        return(
+        return (
             <div>
-                <input id="PlayerInput" type='textbox'/>
+                <input id="PlayerInput" type='textbox' />
                 <label htmlFor="PlayerInput"></label>
                 <button className="player">
                     {this.props.Player}
@@ -15,5 +19,5 @@ class Player extends React.Component {
             </div>
         )
     }
-
+}
 export default Player
