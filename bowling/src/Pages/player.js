@@ -15,6 +15,5 @@ class Player extends React.Component {
             </div>
         )
     }
-}
 
 export default Player
