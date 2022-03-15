@@ -17,7 +17,10 @@ class BowlingGame {
 }
     }
 
-    score = () => {
-        let score = 0;
-        let roll = 0;
-        let framescore = [];
+    // score = () => {
+    //     let score = 0;
+    //     let roll = 0;
+    //     let framescore = [];
+}
+
+    export default BowlingGame
