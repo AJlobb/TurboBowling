@@ -8,19 +8,13 @@ class BowlingGame {
      * constructor
      * @param {string[]} players 
      */
-   
+
     constructor(players) {
         this.players = []
-        for (let i = 0; i < players.length; i++){
+        for (let i = 0; i < players.length; i++) {
             const playerName = players[i]
             this.players.push(new BowlingPlayer(playerName))
-}
+        }
     }
-
-    // score = () => {
-    //     let score = 0;
-    //     let roll = 0;
-    //     let framescore = [];
 }
-
-    export default BowlingGame
+export default BowlingGame
