@@ -26,7 +26,7 @@ describe('a board has the correct number of sections', () => {
       player.rendersquare(8);
       player.rendersquare(9);
 
-    expect(player.getName()).toEqual("alex");
+    expect(player.creatBoard()).toEqual(10);
   });
   xit('A player can be added to the game', () => {
     const player = new Player(["alex", "tom"]);

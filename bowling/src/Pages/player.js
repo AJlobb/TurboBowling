@@ -12,16 +12,22 @@ class Player extends React.Component {
             const playerName = players[i]
             this.players.push(playerName)
         }
+        this.handleChange.bind(this)
+        this.state = {
+            name: ''
+        }
 
-    }
-
-    handleInput = (e) => {
-        this.players(this.players.push(e.target.value))
     }
     /**
      * Function to get the name of the person
      * @returns the name
      */
+
+    handleChange = (e) => {
+        e.preventDefault();
+        this.setState(e.target.value)
+    }
+
     getName = () => {
         return this.name
     }
@@ -31,13 +37,9 @@ class Player extends React.Component {
     render() {
         return (
             <div>
-                <form onSubmit={this.handleInput}> (
-                    <input id="PlayerInput" type='textbox' />
-                    <label htmlFor="PlayerInput"></label>
-                    <button className="player">
-                        {this.props.Player}
-                    </button>
-                </form>
+                <input id="PlayerInput" type='textbox' onChange={this.handleChange} />
+                <label htmlFor="PlayerInput"></label>
+                <p>Hello, {this.state.name}</p>
             </div>
         )
     }
@@ -45,10 +47,34 @@ class Player extends React.Component {
 /**
  * Class to create the board
  */
-class Board extends React.Component 
+class Board extends React.Component {
+    renderSquare(i) {
+        return (
+            <Square 
+                value={this.props.squares(i)}
+                />
+        )
+    }
     createBoard = () => {
-
+        render(); {
+            return (
+                <div>
+                    <div className="board-row">
+                        {this.renderSquare(0)}
+                        {this.renderSquare(1)}
+                        {this.renderSquare(2)}
+                        {this.renderSquare(3)}
+                        {this.renderSquare(4)}
+                        {this.renderSquare(5)}
+                        {this.renderSquare(6)}
+                        {this.renderSquare(7)}
+                        {this.renderSquare(8)}
+                        {this.renderSquare(9)}
+                    </div>
+                </div>
+            )
+        }
     }
 
-}
+};
 export default Player
