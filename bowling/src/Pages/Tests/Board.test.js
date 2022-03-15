@@ -3,10 +3,10 @@ import Board from "../board.js";
 
 describe('Checking Boarling Scorecard', () => {
     it('checking the scorecard displays', () => {
-        render(<Board />)
+        render(<Board />);
 
-        const table = screen.getByTestId("scorecardTable")
+        const table = screen.getByTestId("scorecardTable");
 
-        expect(table).toContainHTML('<tr></tr>')
-    })
-})
+        expect(table).toContainHTML('<tr></tr>');
+    });
+});

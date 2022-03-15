@@ -4,14 +4,16 @@ import React from "react";
  */
 class Player extends React.Component {
 
+    balls = []
     constructor(players) {
         super()
+        this.handleSubmit = this.handleSubmit.bind(this)
         this.name = "alex"
         this.players = []
-        for (let i = 0; i < players.length; i++) {
-            const playerName = players[i]
-            this.players.push(playerName)
-        }
+        // for (let i = 0; i < players.length; i++) {
+        //     const playerName = players[i]
+        //     this.players.push(playerName)
+        // }
     }
     /**
      * Function to get the name of the person
@@ -21,18 +23,136 @@ class Player extends React.Component {
     getName = () => {
         return this.name
     }
+
     getScore = () => {
         return this.score;
     }
-    render() {
-        return (
-            <div>
-                <input id="PlayerInput" type='textbox'/>
-                <label htmlFor="PlayerInput"></label>
-                <p>Hello</p>
-            </div>
-        )
+
+    handleSubmit = () => {
+
     }
+    /**
+     * Makes sure the number of pins scored is between 0-10
+     * @param {number} numberOfPins 
+     * @returns {boolean}
+     */
+    recordBall = (numberOfPins) => {
+        if (numberOfPins > 10 || numberOfPins < 0) {
+            return false
+        }
+        let frame = 1
+        let frameball = 1
+        // for loop to check the frames. If its a strike advance the frame and if they have had two bowls advance the frame
+        for (let i = 0; i < this.balls.length; i++) {
+
+            if (this.balls[i] == 10) {
+                frameball = 1
+                frame++
+                continue
+            }
+
+            frameball++
+            if (frameball > 2) {
+                frame++
+                frameball = 1
+            }
+        }
+        if (!this.isFrameComplete(frame) && (this.getFramePins(frame) + numberOfPins > 10)) {
+            return false
+        }
+
+        //adds the number of pins scored to the array balls
+        this.balls.push(numberOfPins)
+        return true
+    }
+    /**
+     * This adds the number of pins in the current frame to the total score
+     * @param {number} framenumber 
+     * @returns {number}
+     */
+    getFramePins = (framenumber) => {
+        const balls = this.getBallsInFrame(framenumber)
+        let totalScore = 0
+        for (let i = 0; i < balls.length; i++) {
+            totalScore = totalScore + balls[i]
+        }
+        return totalScore
+    }
+    /**
+     * Determines if the frame is a strike
+     * @param {number} framenumber 
+     * @returns {boolean}
+     */
+    isFrameAStrike = (framenumber) => {
+        const balls = this.getBallsInFrame(framenumber)
+        if (balls[0] == 10) {
+            return true
+        }
+        return false
+
+    }
+    /**
+     * This checks that both balls have been thrown in a frame then advances
+     * @param {number} framenumber 
+     * @returns array of numbers
+     */
+    getBallsInFrame = (framenumber) => {
+        let balls = []
+        let frame = 1
+        let frameball = 1
+        for (let i = 0; i < this.balls.length; i++) {
+            if (frame > framenumber) {
+                break
+            }
+            if (frame == framenumber) {
+                balls.push(this.balls[i])
+            }
+
+            if (this.balls[i] == 10) {
+                frameball = 1
+                frame++
+                continue
+            }
+
+            frameball++
+            if (frameball > 2) {
+                frame++
+                frameball = 1
+            }
+        }
+        return balls
+
+
+    }
+    /**
+     * checks if the frame is a spare
+     * @param {number} framenumber 
+     * @returns {boolean}
+     */
+    isFrameASpare = (framenumber) => {
+        if (this.isFrameAStrike(framenumber) == false && this.getFramePins(framenumber) == 10) {
+            return true
+        }
+        return false
+
+    }
+
+    /**
+     * checks if the frame has been completed
+     * @param {number} framenumber 
+     * @returns {boolean}
+     */
+    isFrameComplete = (framenumber) => {
+        if (this.getBallsInFrame(framenumber).length == 2 || this.isFrameAStrike(framenumber)) {
+            return true
+        }
+        return false
+    }
+    /**
+     * Adds the scoring together
+     * @param {number} framenumber 
+     * @returns {number}
+     */
     frameScoring = (framenumber) => {
         let score = 0
         const balls = this.getBallsInFrame(framenumber)
@@ -69,10 +189,26 @@ class Player extends React.Component {
                     const theFrameAfter = this.getFramePins(i + 2)
                     score = score + theFrameAfter
                 }
-                    
+
             }
         }
         return score
+    }
+
+    render() {
+        return (
+            <div>
+                <div>
+                    <h1>Bowling Game</h1>
+                </div>
+                <div>
+                    <form onSubmit={this.handleSubmit}>
+                        <input type='text' id='pinsInput'/>
+                        <button id='submit' name="submit">Submit</button>
+                    </form>
+                </div>
+            </div>
+        )
     }
 }
 export default Player

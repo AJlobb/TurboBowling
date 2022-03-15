@@ -7,7 +7,7 @@ describe('Get player name', () => {
     const player = new Player("alex");
     expect(player.getName()).toEqual("alex");
   });
-  it('A player can be added to the game', () => {
+  xit('A player can be added to the game', () => {
     const player = new Player(["alex", "tom"]);
     expect(player.players.length).toEqual(2)
   });
@@ -18,7 +18,7 @@ describe('Get player name', () => {
 });
 
 describe("Checking input value and testing component", () => {
-  test("Input is valid within file", () => {
+  it("Input is valid within file", () => {
     //Rendering Player Component within the virtual dom
     render(<Player />);
 
@@ -29,7 +29,7 @@ describe("Checking input value and testing component", () => {
     expect(playerInput).toBeInTheDocument();
   });
 
-  test("Updates input value when value passed", () => {
+  it("Updates input value when value passed", () => {
     //Rendering Player Component within the virtual dom
     render(<Player />);
 
@@ -43,75 +43,69 @@ describe("Checking input value and testing component", () => {
     expect(playerInput).toHaveValue('Alex');
   });
 
-  xit("Updates input value and pushes to player array", () => {
-    //Rendering Player Component within the virtual dom
-    render(<Player />);
+  it("Submits value from form", () => {
+    const playerInput = {
+      name: 'Steve',
+      handleSubmit: jest.fn()
+    }
+    const button = screen.getByRole('button', {name: 'submit'})
 
-    //Calling the input in a variable
-    const playerInput = screen.getByRole("textbox");
-
-    //Calling form button
-    const playerSubmit = screen.getByRole("button")
-
-    //Calling new Player Component
-    const player = new Player();
-
-    //Calling event to update input value
-    userEvents.type(playerInput, 'Alex');
-
-    //Submitting input value
-    userEvents.click(playerSubmit)
-
-    expect(player.players()).toEqual(['Alex'])
+    render(<Player {...playerInput} />)
+    userEvents.click(button)
+    expect(playerInput.handleSubmit).toHaveBeenCalledTimes(1)
+    expect(playerInput.handleSubmit).toBeCalledWith({ username: playerInput.name })
   })
+});
+
+describe('Player game tests', () => {
   it('Given a player has had 2 balls and it is not a strike it will return the score', () => {
-    const player = new BowlingPlayer();
+    const player = new Player();
     player.recordBall(7)
     player.recordBall(2)
     expect(player.frameScoring(1)).toEqual(9)
-});
-it('Given a player has had 2 balls for 2 frames and it is not a strike it will return the score', () => {
-    const player = new BowlingPlayer();
+  });
+  it('Given a player has had 2 balls for 2 frames and it is not a strike it will return the score', () => {
+    const player = new Player();
     player.recordBall(7)
     player.recordBall(2)
     player.recordBall(2)
     player.recordBall(6)
     expect(player.frameScoring(2)).toEqual(17)
-});
-it('Given a player has rolled a ball for 1 frames and its not complete return an empty string', () => {
-    const player = new BowlingPlayer();
+  });
+  it('Given a player has rolled a ball for 1 frames and its not complete return an empty string', () => {
+    const player = new Player();
     player.recordBall(7)
     expect(player.frameScoring(1)).toEqual("")
-});
-it('Given a player has hit a spare it will return a / if the next ball has not been bowled yet', () => {
-    const player = new BowlingPlayer();
+  });
+  it('Given a player has hit a spare it will return a / if the next ball has not been bowled yet', () => {
+    const player = new Player();
     player.recordBall(7)
     player.recordBall(3)
     expect(player.frameScoring(1)).toEqual("/")
-});
-it('Given a player has hit a spare it will add the next pin to the score', () => {
-    const player = new BowlingPlayer();
+  });
+  it('Given a player has hit a spare it will add the next pin to the score', () => {
+    const player = new Player();
     player.recordBall(7)
     player.recordBall(3)
     player.recordBall(3)
     expect(player.frameScoring(1)).toEqual(13)
-});
-it('Given a player has hit a strike it will return an X if the next frame isnt complete', () => {
-    const player = new BowlingPlayer();
+  });
+  it('Given a player has hit a strike it will return an X if the next frame isnt complete', () => {
+    const player = new Player();
     player.recordBall(10)
     expect(player.frameScoring(1)).toEqual("X")
-});
-it('Given a player has hit a strike it will return an X if the next frame isnt complete', () => {
-    const player = new BowlingPlayer();
+  });
+  it('Given a player has hit a strike it will return an X if the next frame isnt complete', () => {
+    const player = new Player();
     player.recordBall(10)
     player.recordBall(5)
     expect(player.frameScoring(1)).toEqual("X")
-});
-it('Given a player has hit a strike  it will add the next frame to the score', () => {
-    const player = new BowlingPlayer();
+  });
+  it('Given a player has hit a strike  it will add the next frame to the score', () => {
+    const player = new Player();
     player.recordBall(10)
     player.recordBall(3)
     player.recordBall(0)
     expect(player.frameScoring(1)).toEqual(13)
-});
+  });
 });
