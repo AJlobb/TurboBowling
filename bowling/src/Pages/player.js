@@ -7,13 +7,9 @@ class Player extends React.Component {
     balls = []
     constructor(players) {
         super()
-        this.handleSubmit = this.handleSubmit.bind(this)
+        this.onSubmit = this.onSubmit.bind(this)
         this.name = "alex"
         this.players = []
-        // for (let i = 0; i < players.length; i++) {
-        //     const playerName = players[i]
-        //     this.players.push(playerName)
-        // }
     }
     /**
      * Function to get the name of the person
@@ -28,9 +24,19 @@ class Player extends React.Component {
         return this.score;
     }
 
-    handleSubmit = () => {
-
+    /**
+     * Function to let the user input thier name into the bowling app
+     * @param {"string"} e 
+     * @returns Player Input
+     */
+    onSubmit = (e) => {
+        e.preventDefault();
+        let name = e.target.playerName.value;
+        console.log(name)
+        return this.players.push(name)
     }
+
+
     /**
      * Makes sure the number of pins scored is between 0-10
      * @param {number} numberOfPins 
@@ -194,7 +200,10 @@ class Player extends React.Component {
         }
         return score
     }
-
+/**
+ * Function to render the player name and anything else inputted
+ * @returns the player input
+ */
     render() {
         return (
             <div>
@@ -202,9 +211,9 @@ class Player extends React.Component {
                     <h1>Bowling Game</h1>
                 </div>
                 <div>
-                    <form onSubmit={this.handleSubmit}>
-                        <input type='text' id='pinsInput'/>
-                        <button id='submit' name="submit">Submit</button>
+                    <form onSubmit={this.onSubmit} data-testid="form">
+                        <input type='text' id='pinsInput' name='playerName' data-testid="input" />
+                        <button id='submit' name="submit" data-testid="button">Submit</button>
                     </form>
                 </div>
             </div>

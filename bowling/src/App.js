@@ -1,19 +1,19 @@
 import React from "react";
 import "./App.css";
 
-import Player from "./Pages/player";
+import Player from './Pages/player'
+import Board from "./Pages/board";
 
 function App() {
   return (
-    <body>
-      <div class="container">
-        <div class="scoreboard">
-        </div>
-        <div class="player">
+      <div className="container">
+        <div className="player">
           <Player />
         </div>
+        <div className="scoreboard">
+          <Board />
+        </div>
       </div>
-    </body>
   );
 }
 
