@@ -5,8 +5,8 @@ import Board from '../Board/board.js';
 class BowlingGame {
     currentPlayerID = 0;
     framenumber = 1;
-    this.rolls = [];
-    this.currentRoll = 0;
+    //this.rolls = [];
+    //this.currentRoll = 0;
 
 
 /**
