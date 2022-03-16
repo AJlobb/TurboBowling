@@ -8,3 +8,9 @@ describe('Set pins to 10', () => {
     expect()
   })
 })
+describe('A game has players', () => {
+  it('a game has at least 1 player', () => {
+    const game = new BowlingGame(["alex", "tom"]);
+    expect(game.players.length).toEqual(2)
+  });
+});

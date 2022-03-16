@@ -1,8 +1,8 @@
 import React from "react";
 import "./App.css";
 
-import Player from './Pages/player'
-import Board from "./Pages/board";
+import Player from './Components/player/player.js'
+import Board from './Components/Board/board.js'
 
 function App() {
   return (

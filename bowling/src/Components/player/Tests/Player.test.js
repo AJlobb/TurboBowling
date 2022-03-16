@@ -8,16 +8,7 @@ describe('Get player name', () => {
     const player = new Player("alex");
     expect(player.getName()).toEqual("alex");
   });
-  xit('A player can be added to the game', () => {
-    const player = new Player(["alex", "tom"]);
-    expect(player.players.length).toEqual(2)
-  });
-  xit('A player can be added to the game', () => {
-    const player = new Player(["alex", "tom"]);
-    expect(player.players.length).toEqual(2)
-  });
 });
-
 describe("Checking input value and testing component", () => {
   it("Input is valid within file", () => {
     //Rendering Player Component within the virtual dom
@@ -50,7 +41,6 @@ describe("Checking input value and testing component", () => {
     // const { debug, queryByTestId } = render(<Player onSubmit={mockSubmit} />)
     fireEvent.change(screen.getByTestId('input'), { target: { value: 'alex' } })
     fireEvent.click(screen.getByTestId('button'))
-
     //expect(mockSubmit).toHaveBeenCalled()
   })
 });

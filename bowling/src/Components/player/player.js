@@ -5,11 +5,10 @@ import React from "react";
 class Player extends React.Component {
 
     balls = []
-    constructor(players) {
+    constructor(playerName) {
         super()
         this.onSubmit = this.onSubmit.bind(this)
-        this.name = "alex"
-        this.players = []
+        this.name = playerName
     }
     /**
      * Function to get the name of the person
@@ -200,10 +199,10 @@ class Player extends React.Component {
         }
         return score
     }
-/**
- * Function to render the player name and anything else inputted
- * @returns the player input
- */
+    /**
+     * Function to render the player name and anything else inputted
+     * @returns the player input
+     */
     render() {
         return (
             <div>
