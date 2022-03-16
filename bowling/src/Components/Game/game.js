@@ -1,6 +1,6 @@
-const { BowlingPlayer } = require("./player")
+const { BowlingPlayer } = require("../player/player")
 
-import Board from './board.js';
+import Board from '../Board/board.js';
 
 class BowlingGame {
     currentPlayerID = 0;
